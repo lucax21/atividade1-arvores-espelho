@@ -48,12 +48,12 @@ void arv_imprime(Arvore *a){
 	arv_imprime(a->esq);
 	arv_imprime(a->dir);
 }
-
+//Na função "eh_espelho" eu fiz um chuncho. Minha função retorna 0 para arvores iguais e 1 para arvores diferentes, dai eu neguei o retorno da função "eh_espelho" la na chamada da funcao.
 bool eh_espelho(Arvore *a, Arvore *b){
 	if(!a || !b) return 0;
 
 //	printf("a:%c b:%c \n", a->info, b->info );
-	return !(a->info != b->info ||eh_espelho(a->esq, b->dir) || eh_espelho(a->dir, b->esq));
+	return (a->info != b->info ||eh_espelho(a->esq, b->dir) || eh_espelho(a->dir, b->esq));
 }
 
 Arvore *cria_espelho(Arvore *a){
@@ -91,7 +91,7 @@ void main(){
 	c = cria_espelho(a);
 	arv_imprime(c);
 	
-	printf("\neh espelho? %d\n", eh_espelho(a,b));
+	printf("\neh espelho? %d\n", !eh_espelho(a,b));
 
 	a = arv_libera(a);
 	b = arv_libera(b);
